@@ -67,7 +67,7 @@ class _TasksScreenState extends State<TasksScreen> {
                     ),
                     IconButton(
                       onPressed: () async {
-                        await Provider.of<ProviderClass>(context)
+                        await Provider.of<ProviderClass>(context, listen: false)
                             .deleteAllTasks();
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -94,17 +94,26 @@ class _TasksScreenState extends State<TasksScreen> {
                     itemCount: notes.notecount,
                     itemBuilder: (context, index) {
                       return ListTile(
-                        title: Text(notes.note[index]['title']),
-                        trailing: const Checkbox(
+                        title: Text(
+                          notes.note[index]['title'],
+                          style: TextStyle(
+                            decoration: notes.isChecked
+                                ? TextDecoration.lineThrough
+                                : null,
+                          ),
+                        ),
+                        trailing: Checkbox(
                           activeColor: Colors.lightBlueAccent,
-                          value: false,
-                          onChanged: null,
+                          value: notes.isChecked,
+                          onChanged: (value) {
+                            notes.changeIsChecked();
+                          },
                         ),
                         onLongPress: () async {
                           await notes.deleteTask(notes.note[index]['id']);
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
-                            content: Text('Successfully deleted all Tasks!'),
+                            content: Text('Successfully deleted the Task!'),
                           ));
                         },
                       );

@@ -13,9 +13,3 @@ void main() {
     ),
   );
 }
-
-
-
-// style: TextStyle(
-                        //   decoration: ischecked ? TextDecoration.lineThrough : null,
-                        // ),

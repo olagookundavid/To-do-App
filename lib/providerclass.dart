@@ -36,4 +36,11 @@ class ProviderClass extends ChangeNotifier {
     refreshNotes();
     notifyListeners();
   }
+
+  bool isChecked = false;
+
+  void changeIsChecked() {
+    isChecked = !isChecked;
+    notifyListeners();
+  }
 }

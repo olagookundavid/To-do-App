@@ -58,7 +58,7 @@ class AddTask extends StatelessWidget {
                 width: double.infinity,
               ),
               onTap: () async {
-                Provider.of<ProviderClass>(context)
+                Provider.of<ProviderClass>(context, listen: false)
                     .addTask(addTaskController.text);
                 addTaskController.clear();
                 ScaffoldMessenger.of(context).showSnackBar(
