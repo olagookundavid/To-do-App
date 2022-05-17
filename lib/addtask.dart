@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_example/providerclass.dart';
-// import 'database.dart';
 
 class AddTask extends StatelessWidget {
   final TextEditingController addTaskController;
@@ -59,9 +58,8 @@ class AddTask extends StatelessWidget {
                 width: double.infinity,
               ),
               onTap: () async {
-                Provider.of<ProviderClass>(context, listen: false)
+                Provider.of<ProviderClass>(context)
                     .addTask(addTaskController.text);
-                // await SQLHelper.createItem(addTaskController.text);
                 addTaskController.clear();
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(

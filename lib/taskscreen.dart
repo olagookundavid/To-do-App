@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_example/providerclass.dart';
 import 'addtask.dart';
-// import 'database.dart';
 
 class TasksScreen extends StatefulWidget {
   const TasksScreen({Key? key}) : super(key: key);
@@ -12,18 +11,9 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  // List<Map<String, dynamic>> _notes = [];
   late final TextEditingController _notesController;
 
   get kcontainerdeco => null;
-
-  // This function is used to fetch all data from the database
-  // void _refreshNotes() async {
-  //   final data = await SQLHelper.getItems();
-  //   setState(() {
-  //     _notes = data;
-  //   });
-  // }
 
   @override
   void initState() {
@@ -79,7 +69,6 @@ class _TasksScreenState extends State<TasksScreen> {
                       onPressed: () async {
                         await Provider.of<ProviderClass>(context)
                             .deleteAllTasks();
-                        // _refreshNotes();
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             content: Text('All Tasks have been deleted!'),
@@ -108,17 +97,15 @@ class _TasksScreenState extends State<TasksScreen> {
                         title: Text(notes.note[index]['title']),
                         trailing: const Checkbox(
                           activeColor: Colors.lightBlueAccent,
-                          // value: ischecked,
-                          value: false, onChanged: null,
+                          value: false,
+                          onChanged: null,
                         ),
                         onLongPress: () async {
                           await notes.deleteTask(notes.note[index]['id']);
-                          // SQLHelper.deleteItem(_notes[index]['id']);
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
-                            content: Text('Successfully deleted the To_Do!'),
+                            content: Text('Successfully deleted all Tasks!'),
                           ));
-                          // _refreshNotes();
                         },
                       );
                     },
@@ -136,7 +123,6 @@ class _TasksScreenState extends State<TasksScreen> {
             context: context,
             builder: (context) => AddTask(addTaskController: _notesController),
           );
-          // _refreshNotes();
         },
       ),
     );

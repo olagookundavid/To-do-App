@@ -45,22 +45,13 @@ class SQLHelper {
   // Delete an item
   static Future<void> deleteItem(int id) async {
     final db = await SQLHelper.db();
-    try {
-      await db.delete("items", where: "id = ?", whereArgs: [id]);
-    } catch (err) {
-      // ignore: avoid_print
-      print("Something went wrong when deleting an item: $err");
-    }
+
+    await db.delete("items", where: "id = ?", whereArgs: [id]);
   }
 
   //Delete all items
   static Future<void> deleteAllItem() async {
     final db = await SQLHelper.db();
-    try {
-      await db.delete("items");
-    } catch (err) {
-      // ignore: avoid_print
-      print("Something went wrong when deleting an item: $err");
-    }
+    await db.delete("items");
   }
 }
