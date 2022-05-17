@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_example/providerclass.dart';
 import 'addtask.dart';
+import 'constants.dart';
 
 class TasksScreen extends StatefulWidget {
   const TasksScreen({Key? key}) : super(key: key);
@@ -12,8 +13,6 @@ class TasksScreen extends StatefulWidget {
 
 class _TasksScreenState extends State<TasksScreen> {
   late final TextEditingController _notesController;
-
-  get kcontainerdeco => null;
 
   @override
   void initState() {
@@ -87,7 +86,6 @@ class _TasksScreenState extends State<TasksScreen> {
           Expanded(
             child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                color: Colors.white,
                 child:
                     Consumer<ProviderClass>(builder: (context, notes, child) {
                   return ListView.builder(
@@ -97,16 +95,20 @@ class _TasksScreenState extends State<TasksScreen> {
                         title: Text(
                           notes.note[index]['title'],
                           style: TextStyle(
-                            decoration: notes.isChecked
+                            decoration: !(notes.note[index]['checked'] == 0)
                                 ? TextDecoration.lineThrough
                                 : null,
                           ),
                         ),
                         trailing: Checkbox(
                           activeColor: Colors.lightBlueAccent,
-                          value: notes.isChecked,
+                          value: !(notes.note[index]['checked'] == 0),
                           onChanged: (value) {
-                            notes.changeIsChecked();
+                            notes.changeIsChecked(
+                              notes.note[index]['id'],
+                              notes.note[index]['title'],
+                              notes.note[index]['checked'],
+                            );
                           },
                         ),
                         onLongPress: () async {

@@ -26,7 +26,7 @@ class AddTask extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const Text(
-              'Add Task',
+              'Add New Task',
               style: TextStyle(fontSize: 20, color: Colors.lightBlueAccent),
             ),
             TextField(
@@ -47,13 +47,21 @@ class AddTask extends StatelessWidget {
             ),
             InkWell(
               child: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.lightBlueAccent,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
+                  ),
+                ),
                 child: const Center(
                   child: Text(
                     'Add',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),
-                color: Colors.lightBlueAccent,
                 height: 50,
                 width: double.infinity,
               ),

@@ -1,7 +1,5 @@
 import 'dart:collection';
-
 import 'package:flutter/foundation.dart';
-
 import 'database.dart';
 
 class ProviderClass extends ChangeNotifier {
@@ -37,10 +35,12 @@ class ProviderClass extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool isChecked = false;
+  // bool isChecked = false;
 
-  void changeIsChecked() {
-    isChecked = !isChecked;
+  Future<void> changeIsChecked(int id, String title, int checkvalue) async {
+    await SQLHelper.updatecheckvalue(id, title, checkvalue);
+    refreshNotes();
+    // isChecked = !isChecked;
     notifyListeners();
   }
 }
