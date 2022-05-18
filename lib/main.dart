@@ -5,7 +5,7 @@ import 'taskscreen.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
+    ChangeNotifierProvider<ProviderClass>(
       create: (BuildContext context) => ProviderClass(),
       child: const MaterialApp(
         home: TasksScreen(),

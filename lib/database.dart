@@ -63,8 +63,6 @@ class SQLHelper {
       'checked': (checkvalue == 0) ? 1 : 0,
       'createdAt': DateTime.now().toString()
     };
-    // final result =
     await db.update('items', data, where: "id = ?", whereArgs: [id]);
-    // return result;
   }
 }
